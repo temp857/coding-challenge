@@ -5,13 +5,15 @@ Welcome to the StratumFive Coding Challenge. Please take ten minutes to carefull
 * We don’t expect you to spend much more than 3 hours on this challenge
 * If you do not have a github account you will have to create one
 * [Fork](https://help.github.com/articles/fork-a-repo/) this repository
-* Commit your code frequently. This is how we will review your submission.
+* **Commit your code frequently. This is how we will review your submission.**
 * If you do not have time to fully complete the challenge, please still push it and indicate what your next steps would be. Remember to try to solve the hardest problems first.
 * Use any language and frameworks you want
 * We are not asking for a clever, over engineered or obfuscated solution. Please be as pragmatic as possible.
 * User interface design is not the focus of the problem although we will not mark you down for creating a UI.
 * We should be able to run your code without any crazy steps
 * Make use of the sample data
+* Make sure your final solution is on master
+* **Let us know when you complete the challenge**
 
 ## Problem: Survey Ships
 ### The Problem
