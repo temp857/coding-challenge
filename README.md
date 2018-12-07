@@ -49,3 +49,6 @@ LLFFFLFLFL
 1 1 E\
 3 3 N LOST\
 2 3 S
+
+### Finally
+**Let us know when you complete the challenge**
