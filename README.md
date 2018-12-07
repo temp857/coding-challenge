@@ -50,5 +50,5 @@ LLFFFLFLFL
 3 3 N LOST\
 2 3 S
 
-### Finally
-**Let us know when you complete the challenge**
+## Finally
+**Tell us when you have completed the challenge**
