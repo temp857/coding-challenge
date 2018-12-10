@@ -2,7 +2,7 @@
 
 ## Introduction
 Welcome to the StratumFive Coding Challenge. Please take ten minutes to carefully read through this document before starting the challenge.
-* We don’t expect you to spend much more than 3 hours on this challenge
+* We expect you to spend in the region of a few hours on this challenge. If you do not complete it then please still submit your work.
 * If you do not have a github account you will have to create one
 * [Fork](https://help.github.com/articles/fork-a-repo/) this repository
 * **Commit your code frequently. This is how we will review your submission.**
