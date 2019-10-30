@@ -7,7 +7,14 @@ namespace Tests
     public class UnitTests
     {
         [Fact]
-        public void Test1()
+        public void TestNullInput()
+        {
+            string[] input = null;
+            Assert.Throws<ArgumentException>(() => InputHandler.ProcessInput(input));
+        }
+
+        [Fact]
+        public void TestGivenExample()
         {
             string[] input = new string[]
             {
