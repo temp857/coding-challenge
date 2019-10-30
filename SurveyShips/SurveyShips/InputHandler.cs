@@ -20,6 +20,18 @@ namespace SurveyShips
                 throw new ArgumentException("Input should have odd number of elements!");
             }
 
+            // Split with null argument splits by whitespace.
+            string[] gridSizeStr = filteredInput[0].Split(null);
+            Coords gridSize = new Coords(int.Parse(gridSizeStr[0]), int.Parse(gridSizeStr[1]));
+
+            List<Ship> ships = new List<Ship>();
+            int shipCount = filteredInput.Length / 2;
+            for (int shipIdx = 0; shipIdx < shipCount; shipIdx++)
+            {
+                Ship ship = shipFromString(filteredInput[shipIdx * 2 + 1]);
+                ships.Add(ship);
+            }
+
             return new string[0];
         }
 
@@ -41,6 +53,18 @@ namespace SurveyShips
             }
 
             return filteredInput.ToArray();
+        }
+
+        /// <summary>
+        /// Returns a ship from its input string.
+        /// </summary>
+        /// <returns></returns>
+        private static Ship shipFromString(string shipStr)
+        {
+            // Split with null argument splits by whitespace.
+            string[] splitStr = shipStr.Split(null);
+            Coords initialPosition = new Coords(int.Parse(splitStr[0]), int.Parse(splitStr[1]));
+            return new Ship(initialPosition, OrientationExtentions.FromString(splitStr[2]));
         }
     }
 }
