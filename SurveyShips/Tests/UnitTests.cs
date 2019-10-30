@@ -14,6 +14,21 @@ namespace Tests
         }
 
         [Fact]
+        public void TestEvenInput()
+        {
+            string[] input = new string[]
+            {
+                "5 3",
+                "1 1 E",
+                "RFRFRFRF",
+                "",
+                "3 2 N"
+            };
+
+            Assert.Throws<ArgumentException>(() => InputHandler.ProcessInput(input));
+        }
+
+        [Fact]
         public void TestGivenExample()
         {
             string[] input = new string[]
