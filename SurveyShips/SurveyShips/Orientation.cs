@@ -2,7 +2,7 @@
 
 namespace SurveyShips
 {
-    public struct Coords
+    public struct Coords : IEquatable<Coords>
     {
         public int XCoord { get; set; }
         public int YCoord { get; set; }
@@ -11,6 +11,16 @@ namespace SurveyShips
         {
             XCoord = x;
             YCoord = y;
+        }
+
+        public bool Equals(Coords other)
+        {
+            if ((this.XCoord == other.XCoord) && (this.YCoord == other.YCoord))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 

@@ -12,6 +12,8 @@ namespace SurveyShips
         private int _xSize;
         private int _ySize;
 
+        private List<Coords> _warnings = new List<Coords>();
+
         public Ocean(int xSize, int ySize)
         {
             _xSize = xSize;
@@ -25,9 +27,34 @@ namespace SurveyShips
             Warning
         }
 
-        public MovementResult TryMove(Coords position)
+        public MovementResult TryMove(Coords prevPosition, Coords newPosition)
         {
-            return MovementResult.Success;
+            MovementResult result = MovementResult.Success;
+
+            if ((newPosition.XCoord < 0) ||
+                (newPosition.XCoord >= _xSize) ||
+                (newPosition.YCoord < 0) ||
+                (newPosition.YCoord >= _ySize))
+            {
+                if (_warnings.Contains(prevPosition))
+                {
+                    result = MovementResult.Warning;
+                }
+                else
+                {
+                    result = MovementResult.Lost;
+                }
+            }
+
+            return result;
+        }
+
+        public void AddWarning(Coords warning)
+        {
+            if (!_warnings.Contains(warning))
+            {
+                _warnings.Add(warning);
+            }
         }
     }
 }

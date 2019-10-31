@@ -11,6 +11,8 @@ namespace SurveyShips
 
         private Ocean _ocean;
 
+        private bool _lost = false;
+
         public Ship(Coords initialCoords, Orientation intitialOrientation, Ocean ocean)
         {
             CurrentPosition = initialCoords;
@@ -38,6 +40,11 @@ namespace SurveyShips
 
         private void tryForwardMovement()
         {
+            if (_lost)
+            {
+                return;
+            }
+
             Coords newPos = CurrentPosition;
 
             switch (CurrentOrientation)
@@ -59,7 +66,22 @@ namespace SurveyShips
                     break;
             }
 
-            Ocean.MovementResult res = _ocean.TryMove(newPos);
+            Ocean.MovementResult res = _ocean.TryMove(CurrentPosition, newPos);
+
+            if (res == Ocean.MovementResult.Lost)
+            {
+                _lost = true;
+                _ocean.AddWarning(CurrentPosition);
+            }
+            else if (res == Ocean.MovementResult.Warning)
+            {
+                // Ship has received warning not to move. Nothing to do.
+            }
+            else
+            {
+                // Ship succeeded in moving, update position.
+                CurrentPosition = newPos;
+            }
         }
     }
 }
