@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SurveyShips": {
+      "commandName": "Project",
+      "commandLineArgs": "..\\..\\..\\..\\Inputs\\ExampleInput.txt"
+    }
+  }
+}
