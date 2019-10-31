@@ -43,7 +43,7 @@ namespace SurveyShips
             string output = string.Format("{0} {1} {2}",
                                           CurrentPosition.XCoord,
                                           CurrentPosition.YCoord,
-                                          CurrentOrientation);
+                                          CurrentOrientation.GetLetter());
             if (_lost)
             {
                 output += " LOST";

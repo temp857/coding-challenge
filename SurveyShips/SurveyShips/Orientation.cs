@@ -68,7 +68,7 @@ namespace SurveyShips
             return orientation;
         }
 
-        public static string ToString(this Orientation orientation)
+        public static string GetLetter(this Orientation orientation)
         {
             string returnStr = string.Empty;
 
