@@ -21,15 +21,21 @@ namespace SurveyShips
             }
 
             // Split with null argument splits by whitespace.
-            string[] gridSizeStr = filteredInput[0].Split(null);
-            Coords gridSize = new Coords(int.Parse(gridSizeStr[0]), int.Parse(gridSizeStr[1]));
+            string[] gridSizeStrs = filteredInput[0].Split(null);
+            Ocean ocean = new Ocean(int.Parse(gridSizeStrs[0]) + 1, int.Parse(gridSizeStrs[1]) + 1);
 
             List<Ship> ships = new List<Ship>();
             int shipCount = filteredInput.Length / 2;
             for (int shipIdx = 0; shipIdx < shipCount; shipIdx++)
             {
-                Ship ship = shipFromString(filteredInput[shipIdx * 2 + 1]);
+                Ship ship = shipFromString(filteredInput[shipIdx * 2 + 1], ocean);
                 ships.Add(ship);
+                string shipMoves = filteredInput[shipIdx * 2 + 2];
+                foreach (char move in shipMoves)
+                {
+                    Movement movement = MovementExtentions.FromChar(move);
+                    ship.DoMovement(movement);
+                }
             }
 
             return new string[0];
@@ -59,12 +65,12 @@ namespace SurveyShips
         /// Returns a ship from its input string.
         /// </summary>
         /// <returns></returns>
-        private static Ship shipFromString(string shipStr)
+        private static Ship shipFromString(string shipStr, Ocean ocean)
         {
             // Split with null argument splits by whitespace.
             string[] splitStr = shipStr.Split(null);
             Coords initialPosition = new Coords(int.Parse(splitStr[0]), int.Parse(splitStr[1]));
-            return new Ship(initialPosition, OrientationExtentions.FromString(splitStr[2]));
+            return new Ship(initialPosition, OrientationExtentions.FromString(splitStr[2]), ocean);
         }
     }
 }
