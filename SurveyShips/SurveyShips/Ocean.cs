@@ -20,6 +20,9 @@ namespace SurveyShips
             _ySize = ySize;
         }
 
+        /// <summary>
+        /// Result of trying to move in the ocean.
+        /// </summary>
         public enum MovementResult
         {
             Success,
@@ -27,6 +30,12 @@ namespace SurveyShips
             Warning
         }
 
+        /// <summary>
+        /// Ship tries to move in the ocean.
+        /// </summary>
+        /// <param name="prevPosition"></param>
+        /// <param name="newPosition"></param>
+        /// <returns></returns>
         public MovementResult TryMove(Coords prevPosition, Coords newPosition)
         {
             MovementResult result = MovementResult.Success;
@@ -49,6 +58,10 @@ namespace SurveyShips
             return result;
         }
 
+        /// <summary>
+        /// Add a warning in the ocean.
+        /// </summary>
+        /// <param name="warning"></param>
         public void AddWarning(Coords warning)
         {
             if (!_warnings.Contains(warning))

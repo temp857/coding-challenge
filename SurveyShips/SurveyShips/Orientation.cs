@@ -2,6 +2,9 @@
 
 namespace SurveyShips
 {
+    /// <summary>
+    /// Represents a set of Cartesian coordinates.
+    /// </summary>
     public struct Coords : IEquatable<Coords>
     {
         public int XCoord { get; set; }
@@ -24,6 +27,9 @@ namespace SurveyShips
         }
     }
 
+    /// <summary>
+    /// Orientation, one of the four main compass directions.
+    /// </summary>
     public enum Orientation
     {
         North,
@@ -68,7 +74,12 @@ namespace SurveyShips
             return orientation;
         }
 
-        public static string GetLetter(this Orientation orientation)
+        /// <summary>
+        /// Returns the string from an orientation.
+        /// </summary>
+        /// <param name="orientation"></param>
+        /// <returns></returns>
+        public static string GetString(this Orientation orientation)
         {
             string returnStr = string.Empty;
 
@@ -94,6 +105,11 @@ namespace SurveyShips
             return returnStr;
         }
 
+        /// <summary>
+        /// Turns an orientation right 90deg.
+        /// </summary>
+        /// <param name="orientation"></param>
+        /// <returns></returns>
         public static Orientation TurnRight(this Orientation orientation)
         {
             Orientation newOrientation = Orientation.North;
@@ -120,6 +136,11 @@ namespace SurveyShips
             return newOrientation;
         }
 
+        /// <summary>
+        /// Turns an orientation left 90deg.
+        /// </summary>
+        /// <param name="orientation"></param>
+        /// <returns></returns>
         public static Orientation TurnLeft(this Orientation orientation)
         {
             Orientation newOrientation = Orientation.North;
@@ -147,6 +168,9 @@ namespace SurveyShips
         }
     }
 
+    /// <summary>
+    /// Represents a movement command.
+    /// </summary>
     public enum Movement
     {
         Forward,
@@ -157,7 +181,7 @@ namespace SurveyShips
     public static class MovementExtentions
     {
         /// <summary>
-        /// Returns the orientation from a string.
+        /// Returns the orientation from a character.
         /// </summary>
         /// <param name="movementChar"></param>
         /// <returns></returns>

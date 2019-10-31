@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SurveyShips
 {
+    /// <summary>
+    /// Class representing a ship with a position and orientation.
+    /// </summary>
     public class Ship
     {
         public Coords CurrentPosition { get; private set; }
@@ -20,6 +23,10 @@ namespace SurveyShips
             _ocean = ocean;
         }
 
+        /// <summary>
+        /// Process a movement.
+        /// </summary>
+        /// <param name="movement"></param>
         public void DoMovement(Movement movement)
         {
             switch (movement)
@@ -38,12 +45,17 @@ namespace SurveyShips
             }
         }
 
+        /// <summary>
+        /// Returns a string representing the current position and orientation of the ship and
+        /// whether it's lost.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string output = string.Format("{0} {1} {2}",
                                           CurrentPosition.XCoord,
                                           CurrentPosition.YCoord,
-                                          CurrentOrientation.GetLetter());
+                                          CurrentOrientation.GetString());
             if (_lost)
             {
                 output += " LOST";
@@ -51,10 +63,14 @@ namespace SurveyShips
             return output;
         }
 
+        /// <summary>
+        /// Try to move forward.
+        /// </summary>
         private void tryForwardMovement()
         {
             if (_lost)
             {
+                // Ship is already lost, don't move forward.
                 return;
             }
 
