@@ -26,6 +26,7 @@ namespace SurveyShips
 
             List<Ship> ships = new List<Ship>();
             int shipCount = filteredInput.Length / 2;
+            string[] output = new string[shipCount];
             for (int shipIdx = 0; shipIdx < shipCount; shipIdx++)
             {
                 Ship ship = shipFromString(filteredInput[shipIdx * 2 + 1], ocean);
@@ -36,9 +37,11 @@ namespace SurveyShips
                     Movement movement = MovementExtentions.FromChar(move);
                     ship.DoMovement(movement);
                 }
+
+                output[shipIdx] = ship.ToString();
             }
 
-            return new string[0];
+            return output;
         }
 
         /// <summary>

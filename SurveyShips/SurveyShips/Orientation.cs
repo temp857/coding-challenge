@@ -68,6 +68,32 @@ namespace SurveyShips
             return orientation;
         }
 
+        public static string ToString(this Orientation orientation)
+        {
+            string returnStr = string.Empty;
+
+            switch (orientation)
+            {
+                case Orientation.North:
+                    returnStr = "N";
+                    break;
+
+                case Orientation.East:
+                    returnStr = "E";
+                    break;
+
+                case Orientation.South:
+                    returnStr = "S";
+                    break;
+
+                case Orientation.West:
+                    returnStr = "W";
+                    break;
+            }
+
+            return returnStr;
+        }
+
         public static Orientation TurnRight(this Orientation orientation)
         {
             Orientation newOrientation = Orientation.North;

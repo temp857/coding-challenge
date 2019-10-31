@@ -36,6 +36,11 @@ namespace SurveyShips
                 else
                 {
                     string[] lines = File.ReadAllLines(args[0]);
+                    string[] output = InputHandler.ProcessInput(lines);
+                    foreach (string line in output)
+                    {
+                        Console.WriteLine(line);
+                    }
                     returnCode = ReturnCode.Success;
                 }
             }

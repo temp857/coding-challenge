@@ -38,6 +38,19 @@ namespace SurveyShips
             }
         }
 
+        public override string ToString()
+        {
+            string output = string.Format("{0} {1} {2}",
+                                          CurrentPosition.XCoord,
+                                          CurrentPosition.YCoord,
+                                          CurrentOrientation);
+            if (_lost)
+            {
+                output += " LOST";
+            }
+            return output;
+        }
+
         private void tryForwardMovement()
         {
             if (_lost)
