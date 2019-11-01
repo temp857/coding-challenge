@@ -36,7 +36,7 @@ namespace SurveyShips
         /// <param name="prevPosition"></param>
         /// <param name="newPosition"></param>
         /// <returns></returns>
-        public MovementResult TryMove(Coords prevPosition, Coords newPosition)
+        public MovementResult TryMove(Coords? prevPosition, Coords newPosition)
         {
             MovementResult result = MovementResult.Success;
 
@@ -45,7 +45,7 @@ namespace SurveyShips
                 (newPosition.YCoord < 0) ||
                 (newPosition.YCoord >= _ySize))
             {
-                if (_warnings.Contains(prevPosition))
+                if ((prevPosition.HasValue) && _warnings.Contains(prevPosition.Value))
                 {
                     result = MovementResult.Warning;
                 }

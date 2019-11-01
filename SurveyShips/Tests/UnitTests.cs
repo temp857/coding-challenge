@@ -54,5 +54,24 @@ namespace Tests
             string[] output = InputHandler.ProcessInput(input);
             Assert.Equal(expectedOutput, output);
         }
+
+        [Fact]
+        public void TestShipInitiallyLost()
+        {
+            string[] input = new string[]
+            {
+                "2 2",
+                "1 3 E",
+                "RR"
+            };
+
+            string[] expectedOutput = new string[]
+            {
+                "1 3 E LOST"
+            };
+
+            string[] output = InputHandler.ProcessInput(input);
+            Assert.Equal(expectedOutput, output);
+        }
     }
 }

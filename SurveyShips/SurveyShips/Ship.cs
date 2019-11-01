@@ -14,13 +14,20 @@ namespace SurveyShips
 
         private Ocean _ocean;
 
-        private bool _lost = false;
+        private bool _isLost = false;
 
         public Ship(Coords initialCoords, Orientation intitialOrientation, Ocean ocean)
         {
             CurrentPosition = initialCoords;
             CurrentOrientation = intitialOrientation;
             _ocean = ocean;
+
+            Ocean.MovementResult res = _ocean.TryMove(null, CurrentPosition);
+
+            if (res == Ocean.MovementResult.Lost)
+            {
+                _isLost = true;
+            }
         }
 
         /// <summary>
@@ -29,6 +36,12 @@ namespace SurveyShips
         /// <param name="movement"></param>
         public void DoMovement(Movement movement)
         {
+            if (_isLost)
+            {
+                // Ship is already lost, don't move.
+                return;
+            }
+
             switch (movement)
             {
                 case Movement.Forward:
@@ -56,7 +69,7 @@ namespace SurveyShips
                                           CurrentPosition.XCoord,
                                           CurrentPosition.YCoord,
                                           CurrentOrientation.GetString());
-            if (_lost)
+            if (_isLost)
             {
                 output += " LOST";
             }
@@ -68,12 +81,6 @@ namespace SurveyShips
         /// </summary>
         private void tryForwardMovement()
         {
-            if (_lost)
-            {
-                // Ship is already lost, don't move forward.
-                return;
-            }
-
             Coords newPos = CurrentPosition;
 
             switch (CurrentOrientation)
@@ -99,7 +106,7 @@ namespace SurveyShips
 
             if (res == Ocean.MovementResult.Lost)
             {
-                _lost = true;
+                _isLost = true;
                 _ocean.AddWarning(CurrentPosition);
             }
             else if (res == Ocean.MovementResult.Warning)
