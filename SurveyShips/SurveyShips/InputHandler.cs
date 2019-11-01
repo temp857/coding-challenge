@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace SurveyShips
 {
@@ -27,18 +27,18 @@ namespace SurveyShips
             List<Ship> ships = new List<Ship>();
             int shipCount = filteredInput.Length / 2;
             string[] output = new string[shipCount];
-            for (int shipIdx = 0; shipIdx < shipCount; shipIdx++)
+            for (int shipNum = 0; shipNum < shipCount; shipNum++)
             {
-                Ship ship = shipFromString(filteredInput[shipIdx * 2 + 1], ocean);
+                Ship ship = shipFromString(filteredInput[shipNum * 2 + 1], ocean);
                 ships.Add(ship);
-                string shipMoves = filteredInput[shipIdx * 2 + 2];
+                string shipMoves = filteredInput[shipNum * 2 + 2];
                 foreach (char move in shipMoves)
                 {
                     Movement movement = MovementExtentions.FromChar(move);
                     ship.DoMovement(movement);
                 }
 
-                output[shipIdx] = ship.ToString();
+                output[shipNum] = ship.ToString();
             }
 
             return output;
@@ -51,17 +51,7 @@ namespace SurveyShips
         /// <returns></returns>
         private static string[] filterInput(string[] input)
         {
-            List<string> filteredInput = new List<string>();
-
-            foreach (string line in input)
-            {
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    filteredInput.Add(line);
-                }
-            }
-
-            return filteredInput.ToArray();
+            return input.Where((_, lineNum) => (lineNum == 0) || (lineNum % 3 != 0)).ToArray();
         }
 
         /// <summary>

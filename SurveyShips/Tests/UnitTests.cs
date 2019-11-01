@@ -73,5 +73,29 @@ namespace Tests
             string[] output = InputHandler.ProcessInput(input);
             Assert.Equal(expectedOutput, output);
         }
+
+        [Fact]
+        public void TestShipNoMovements()
+        {
+            string[] input = new string[]
+            {
+                "5 3",
+                "1 1 E",
+                "",
+                "",
+                "3 2 N",
+                "FRRFLLFFRRFLL",
+                "",
+            };
+
+            string[] expectedOutput = new string[]
+            {
+                "1 1 E",
+                "3 3 N LOST"
+            };
+
+            string[] output = InputHandler.ProcessInput(input);
+            Assert.Equal(expectedOutput, output);
+        }
     }
 }
